@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 
 const RegistrantSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true,
-    },
-    lastname: {
+    fullname: {
         type: String,
         required: true,
     },
@@ -18,7 +14,7 @@ const RegistrantSchema = new mongoose.Schema({
         maxlength: [10, 'Regd No. must be of 10 digits']
     },
     year: {
-        type: String,
+        type: Number,
         required: true,
     },
     branch: {
@@ -37,6 +33,10 @@ const RegistrantSchema = new mongoose.Schema({
         required: true,
         minlength: [10, 'Phone no. must be of 10 digits'],
         maxlength: [10, 'Phone no. must be of 10 digits']
+    },
+    codingProfile: {
+        type: String,
+        required: true
     }
 }, { timestamps: true});
 

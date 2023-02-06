@@ -35,8 +35,10 @@ router.post('/register', async (req, res) => {
             res.status(200).json(newRegistrant);
         }
     } catch (error) {
-        const errors = handleErrors(error);
-        res.status(400).json({errors});
+        // const errors = handleErrors(error);
+        console.log(error);
+
+        res.status(400).json({error});
     }
 });
 
