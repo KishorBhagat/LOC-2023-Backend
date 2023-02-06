@@ -16,28 +16,27 @@ const handleErrors = (err) => {
 router.post('/register', async (req, res) => {
     
     try {
-        const { firstname, lastname, regdNo, year, branch, email, phone } = req.body;
+        const { fullname, regdNo, year, branch, email, phone, codingProfile } = req.body;
         const data = await Registrant.findOne({ regdNo });
         if(data){
             res.status(403).json({error: {message: "User already registered."}});
         }
         else {
             const newRegistrant = new Registrant({
-                firstname,
-                lastname,
+                fullname,
                 regdNo,
                 year,
                 branch,
                 email,
-                phone
+                phone,
+                codingProfile
             });
             const registrant = await newRegistrant.save();
             res.status(200).json(newRegistrant);
         }
     } catch (error) {
-        // const errors = handleErrors(error);
+        const errors = handleErrors(error);
         console.log(error);
-
         res.status(400).json({error});
     }
 });

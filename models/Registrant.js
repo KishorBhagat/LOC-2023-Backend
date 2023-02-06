@@ -4,6 +4,7 @@ const { isEmail } = require('validator');
 const RegistrantSchema = new mongoose.Schema({
     fullname: {
         type: String,
+        required: true,
     },
     regdNo: {
         type: String,
@@ -35,6 +36,7 @@ const RegistrantSchema = new mongoose.Schema({
     },
     codingProfile: {
         type: String,
+        required: true,
     }
 }, { timestamps: true});
 
