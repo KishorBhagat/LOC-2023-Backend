@@ -7,7 +7,7 @@ const handleErrors = (err) => {
     let errors = {regdNo: '', email: '', phone: ''};
     if(err._message.includes('registrant validation failed')){
         Object.values(err.errors).forEach(({properties}) => {
-            errors[properties.path] = properties.message;
+            errors[properties.path] = {message: properties.message};
         });
     }
     return errors;
@@ -19,9 +19,12 @@ router.post('/register', async (req, res) => {
         const { fullname, regdNo, year, branch, email, phone, codingProfile } = req.body;
         const data = await Registrant.findOne({ regdNo });
         if(data){
-            res.status(403).json({error: {message: "User already registered."}});
+            res.status(403).json({error: {message: "You have already registered."}});
         }
         else {
+            if(await Registrant.findOne({ email })){
+                return res.status(403).json({error: {message: "This email is already registered."}});
+            }
             const newRegistrant = new Registrant({
                 fullname,
                 regdNo,
