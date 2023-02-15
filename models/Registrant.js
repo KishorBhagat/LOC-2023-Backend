@@ -31,6 +31,13 @@ const RegistrantSchema = new mongoose.Schema({
     phone: {
         type: String,
         required: true,
+        unique: true,
+        minlength: [10, 'Phone no. must be of 10 digits'],
+        maxlength: [10, 'Phone no. must be of 10 digits']
+    },
+    confirmphone: {
+        type: String,
+        required: true,
         minlength: [10, 'Phone no. must be of 10 digits'],
         maxlength: [10, 'Phone no. must be of 10 digits']
     },
