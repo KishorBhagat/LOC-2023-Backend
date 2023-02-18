@@ -32,8 +32,7 @@ const RegistrantSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        minlength: [11, 'Phone no. must be of 10 digits'],
-        maxlength: [11, 'Phone no. must be of 10 digits']
+        maxlength: [11, 'Phone no. must be of 10 digits'],
     },
     codingProfile: {
         type: String,
