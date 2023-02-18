@@ -43,8 +43,8 @@ router.post('/register', async (req, res) => {
             const registrant = await newRegistrant.save();
             res.status(200).json(newRegistrant);
         }
-    } catch (error) {
-        const errors = handleErrors(error);
+    } catch (err) {
+        const errors = handleErrors(err);
         res.status(400).json({error: {message: "Something Went wrong! Please enter all the fields correctly or wait for sometime."}});
     }
 });
