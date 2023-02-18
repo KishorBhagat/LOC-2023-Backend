@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
                 return res.status(403).json({error: {message: "This number is already registered."}});
             }
             if(phone !== confirmphone){
-                return res.status(403).json({error: {message: "Phone numbers aren't matching correctly"}});
+                return res.status(403).json({error: {message: "Phone numbers aren't matching correctly."}});
             }
             const newRegistrant = new Registrant({
                 fullname,
@@ -45,7 +45,7 @@ router.post('/register', async (req, res) => {
         }
     } catch (error) {
         const errors = handleErrors(error);
-        res.status(400).json({errors});
+        res.status(400).json({error: {message: "Something Went wrong! Please enter all the fields correctly or wait for sometime."}});
     }
 });
 
