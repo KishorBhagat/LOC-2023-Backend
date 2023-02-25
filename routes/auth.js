@@ -16,33 +16,35 @@ const handleErrors = (err) => {
 router.post('/register', async (req, res) => {
     
     try {
-        const { fullname, regdNo, year, branch, email, phone, confirmphone, codingProfile } = req.body;
-        const data = await Registrant.findOne({ regdNo });
-        if(data){
-            res.status(403).json({error: {message: "You have already registered."}});
-        }
-        else {
-            if(await Registrant.findOne({ email })){
-                return res.status(403).json({error: {message: "This email is already registered."}});
-            }
-            if(await Registrant.findOne({ phone })){
-                return res.status(403).json({error: {message: "This number is already registered."}});
-            }
-            if(phone !== confirmphone){
-                return res.status(403).json({error: {message: "Phone numbers aren't matching correctly."}});
-            }
-            const newRegistrant = new Registrant({
-                fullname,
-                regdNo,
-                year,
-                branch,
-                email,
-                phone,
-                codingProfile
-            });
-            const registrant = await newRegistrant.save();
-            res.status(200).json(newRegistrant);
-        }
+        // const { fullname, regdNo, year, branch, email, phone, confirmphone, codingProfile } = req.body;
+        // const data = await Registrant.findOne({ regdNo });
+        // if(data){
+        //     res.status(403).json({error: {message: "You have already registered."}});
+        // }
+        // else {
+        //     if(await Registrant.findOne({ email })){
+        //         return res.status(403).json({error: {message: "This email is already registered."}});
+        //     }
+        //     if(await Registrant.findOne({ phone })){
+        //         return res.status(403).json({error: {message: "This number is already registered."}});
+        //     }
+        //     if(phone !== confirmphone){
+        //         return res.status(403).json({error: {message: "Phone numbers aren't matching correctly."}});
+        //     }
+        //     const newRegistrant = new Registrant({
+        //         fullname,
+        //         regdNo,
+        //         year,
+        //         branch,
+        //         email,
+        //         phone,
+        //         codingProfile
+        //     });
+        //     const registrant = await newRegistrant.save();
+        //     res.status(200).json(newRegistrant);
+        // }
+
+        res.status(200).json({error: {message: "The registration is now closed. We are no longer taking responses."}});
     } catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({error: {message: "Something Went wrong! Please enter all the fields correctly or wait for sometime."}});

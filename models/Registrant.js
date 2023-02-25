@@ -37,6 +37,7 @@ const RegistrantSchema = new mongoose.Schema({
     codingProfile: {
         type: String,
         required: true,
+        minlength: 20,
     }
 }, { timestamps: true});
 
